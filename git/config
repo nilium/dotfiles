@@ -1,0 +1,131 @@
+;; vim: set ft=gitconfig tw=80 noet ts=8 sw=8 :
+
+[mailmap]
+	file = ~/.git.mailmap
+
+[user]
+	name = Noel Cower
+	email = ncower@gmail.com
+	signingKey = ncower@gmail.com
+
+[core]
+        editor = vim
+
+[core]
+        quotepath = false
+        excludesfile = ~/.gitignore_global
+        pager = less -F -X
+
+;; Include merge summary in merge commit messages.
+[merge]
+        summary = true
+
+;; Set some sane defaults for rebasing.
+[rebase]
+        ;; If you've used --fixup, this will auto-squash those commits.
+        autoSquash = true
+        ;; Can be potentially weird to unstash after a rebase, better to be
+        ;; explicit.
+        autoStash = false
+
+;; Prevent bad practices by ensuring the pushes use predictable behavior by
+;; default.
+[push]
+        default = simple
+        ;; Preserve merge commits -- this requires Git 1.8.5-ish? I think.
+        rebase = preserve
+
+;; Only allow pulls to be fast-forwarding. This means you're obligated to
+;; manually merge in conflicting remote branches and just as well means that
+;; you're aware of what you're doing.
+[pull]
+        ff = only
+
+[color]
+        branch = auto
+        diff = auto
+        status = auto
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+
+[color "status"]
+        added = bold yellow
+        changed = bold green
+        untracked = bold cyan
+
+[gui]
+        ;; Use PragmataPro -- I don't know what will happen if you don't have
+        ;; PragmataPro, and it's not a font anyone has by default.
+        ;; PragmataPro: <http://www.fsd.it/shop/fonts/pragmatapro/>
+        fontdiff = -family PragmataPro -size 13 -weight normal -slant roman -underline 0 -overstrike 0
+        commitmsgwidth = 78
+        diffcontext = 2
+
+[mergetool]
+	prompt = false
+[mergetool "filemerge"]
+	cmd = opendiff
+[mergetool "vimdiff"]
+	cmd = vimdiff
+
+[alias]
+        dc = diff --cached
+        pff = pull --ff-only
+        s = show
+        ap = add --patch
+        cv = commit --verbose --untracked-files=no
+        ci = commit
+        co = checkout
+        br = branch
+        st = status
+        sm = submodule
+	puff = push --force-with-lease
+	puf = push --force-with-lease
+        ;; Less general-purpose aliases
+        ; st = !git status -- $* && git lol --max-count=6 -- $* 2>/dev/null
+        who = shortlog -s --
+        df = difftool
+        ri = rebase --interactive
+        rh = reset HEAD
+        logwhen = log --pretty='%h: %an (%aD)'
+        lp = log --pretty=short --name-status
+        lps = log --pretty=medium --name-status
+        # Borrowed/modified from user "Slipp D. Thompson"'s answer at http://stackoverflow.com/a/9074343/457812
+        lsd = stash list --name-status --abbrev-commit --decorate --format=format:'%C(bold yellow)%<|(11)%gd %C(bold blue)%h%C(reset)  %C(bold green)%>(16)%ar ⇒ %C(reset) %s%C(reset)'
+        lol = log --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
+	slog = log --format=oneline
+	alog = log --all --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
+        glog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
+        glogd = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %s%C(reset) - %an%C(reset)'
+
+[url "git@github.com:"]
+        pushInsteadOf=https://github.com/
+        pushInsteadOf=http://github.com/
+        pushInsteadOf=git://github.com/
+
+[github]
+        user = nilium
+
+;; git.spiff.io (necessary for dagr, go-ini, binit, and other external projects'
+;; development)
+[gitreview]
+        username = nil
+[interactive]
+	diffFilter = diff-highlight
+[commit]
+	verbose = yes
+	gpgSign = true
+[status]
+	submoduleSummary = false
+
+[include]
+	path = ~/.gitconfig.local
