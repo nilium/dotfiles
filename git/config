@@ -119,8 +119,6 @@
 ;; development)
 [gitreview]
         username = nil
-[interactive]
-	diffFilter = diff-highlight
 [commit]
 	verbose = yes
 	gpgSign = true
