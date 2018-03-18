@@ -1,0 +1,55 @@
+*rebar.txt*   Asynchronous rebar dispatcher and error parser
+
+Author:  James Fish <james at fishcakez.com>
+Repo:    https://github.com/fishcakez/vim-rebar
+License: Apache License, Version 2.0  {{{
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+}}}
+
+==============================================================================
+INTRODUCTION                                                      *rebar*
+
+Run rebar asynchronously without loosing focus of vim. Requires vim-dispatch.
+
+=============================================================================
+COMMANDS                                                  *rebar-commands*
+
+                                                          *:Rebar*
+:Rebar [arguments]
+                    Execute rebar in the foreground, when rebar finishes
+                    automatically the output to create a quickfix list if any
+                    errors.
+
+:Rebar! [arguments]
+                    Execute rebar in the background, use |:Copen| to parse the
+                    output and create a quickfix list.
+
+:Rebar!! [arguments]
+                    Execute mix in a new, focused, window.
+
+:Rebar!!! [arguments]
+                    Execute mix in a new, unfocused, window.
+
+============================================================================
+EXAMPLE USAGE                                            *rebar-example*
+
+>
+    " Get deps in background
+    :Rebar! get-deps
+    " Compile application in cwd:
+    :Rebar compile skip_deps=true
+    " Run ct in new. unfocused window:
+    :Rebar!!! ct
+<
+
+============================================================================
