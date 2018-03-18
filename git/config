@@ -6,7 +6,7 @@
 [user]
 	name = Noel Cower
 	email = ncower@gmail.com
-	signingKey = ncower@gmail.com
+	signingKey = 56EA0ABFD82E12DE
 
 [core]
         editor = vim
