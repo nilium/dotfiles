@@ -1,0 +1,87 @@
+# next declaration end
+Given erlang (][):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ][x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+
+# prev declaration end
+Given erlang ([]):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[]x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+# dots in records
+Given erlang (dots in records):
+  f(State) when State#state.running==true ->
+    123.
+
+Do:
+  ][x
+
+Expect erlang:
+  f(State) when State#state.running==true ->
+    123
+
+#
+Given erlang (][ skipping comments):
+
+  % comment
+
+  % more commments
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ][x
+Expect erlang:
+
+  % comment
+
+  % more commments
+
+  f(1) -> 1;
+  f(2) -> 2
+
+# TODO uncomment after setting up after/syntax properly
+# Given erlang (][ with -spec):
+# 
+#   -spec f(number()) -> number().
+# 
+#   f(1) -> 1;
+#   f(2) -> 2.
+# 
+# Do:
+#   ][x
+# 
+# Expect erlang:
+# 
+#   -spec f(number()) -> number().
+# 
+#   f(1) -> 1;
+#   f(2) -> 2.
