@@ -1,0 +1,81 @@
+# next clause end
+Given erlang (]M):
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]Mx
+
+Expect erlang:
+  f(1) -> 1
+  f(2) -> 2.
+
+#
+Given erlang (]M):
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3.
+
+Do:
+  ]M]M]Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3
+
+# prev clause end
+Given erlang ([M):
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3.
+
+Do:
+  G[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+  f(3) -> 3.
+
+# dots in records
+Given erlang (dots in records):
+  f(State) when State#state.running==true ->
+    123.
+
+Do:
+  ]Mx
+
+Expect erlang:
+  f(State) when State#state.running==true ->
+    123
+
+#
+Given erlang ([M skipping comments and new lines):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[M[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+# TODO: after/syntax/erlang.vim
+# - -spec
+
