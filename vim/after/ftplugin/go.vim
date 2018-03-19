@@ -14,5 +14,6 @@ nnoremap <buffer> <Leader>gl :GoLint<CR>
 nnoremap <buffer> <Leader>gd :GoDoc<CR>
 
 let b:syntastic_mode = 'passive'
+let b:sleuth_automatic = 0
 
 let mapleader = s:templeader
