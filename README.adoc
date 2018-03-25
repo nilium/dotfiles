@@ -30,7 +30,7 @@ something like the following:
 ----
 #!/usr/bin/env bash
 conf() {
-        <subtrees.gitconfig git config -f - --get-regexp '^remote\..*\.'"$1"'$' | cut -d' ' -f2
+        git config -f subtrees.gitconfig --get-regexp '^remote\..*\.'"$1"'$' | cut -d' ' -f2
 }
 
 paste <(conf subtree) <(conf url) <(conf ref) | tr '\t' '\n' |
