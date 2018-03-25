@@ -34,7 +34,7 @@ conf() {
 }
 
 paste <(conf subtree) <(conf url) <(conf ref) | tr '\t' '\n' |
-        xargs -n3 bash -c 'echo git subtree --prefix="$1" --squash "$2" "$3"' _
+        xargs -n3 bash -c 'echo git subtree add --prefix="$1" --squash "$2" "$3"' _
 ----
 
 Since the refs are likely to rot, however, using master in place of the ref in
