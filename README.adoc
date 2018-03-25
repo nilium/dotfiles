@@ -1,0 +1,42 @@
+dotfiles
+========
+
+To install these using the Makefile, use bmake.
+
+The following targets are available:
+
+install-vim::
+    Vim config files
+install-tmux::
+    Tmux config files (Darwin/Linux)
+install-git::
+    Git config (really, really specific to me)
+
+By default, all three are installed.
+
+
+Subtrees
+--------
+
+For working with subtrees in the repo, you can stick the line
+`[include] path = ../subtrees.gitconfig` into .git/config and this will provide
+quick access to repositories for those subtrees. subtrees.gitconfig should
+contain enough information to reproduce the entire set of subtrees in the event
+that they need to be rebuilt.
+
+For example, to echo commands to rebuild all subtrees, you could try doing
+something like the following:
+
+----
+#!/usr/bin/env bash
+conf() {
+        <subtrees.gitconfig git config -f - --get-regexp '^remote\..*\.'"$1"'$' | cut -d' ' -f2
+}
+
+paste <(conf subtree) <(conf url) <(conf ref) | tr '\t' '\n' |
+        xargs -n3 bash -c 'echo git subtree --prefix="$1" --squash "$2" "$3"' _
+----
+
+Since the refs are likely to rot, however, using master in place of the ref in
+the subtrees.gitconfig may be preferable, since the config itself is maintained
+by hand (and the refs extracted from git log).

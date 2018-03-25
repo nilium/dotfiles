@@ -1,13 +1,19 @@
-_         :=
 PREFIX    ?= ${HOME}
 TMUX_CONF ?= ${PREFIX}/.tmux.conf
 GIT_CONF  ?= ${PREFIX}/.gitconfig
 VIM_DIR   ?= ${PREFIX}/.vim
 
 HERE := ${.PARSEDIR}
-PLATFORM ?= ${_:!uname -s!:tl}
+.ifndef PLATFORM
+PLATFORM != uname -s | tr A-Z a-z
+.endif
 
-GMAKE   ?= ${_:!((hash gmake && which gmake) || (hash make && which make)) 2>/dev/null!}
+.ifndef GMAKE
+GMAKE != ((hash gmake && which gmake) || (hash make && which make)) 2>/dev/null
+.if empty(GMAKE)
+.error GNU make not found -- required for install-vim
+.endif
+.endif
 SYMLINK := ln -sf
 
 TARGETS := \
