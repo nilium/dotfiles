@@ -1,5 +1,7 @@
 ## unplanned
 
+## 1.17 - (March 27, 2018)
+
 FEATURES:
 
 * **Debugger support!** Add integrated support for the
@@ -24,6 +26,8 @@ IMPROVEMENTS:
   [[GH-1678]](https://github.com/fatih/vim-go/pull/1678)
 * Use the async api when calling gocode to get type info.
   [[GH-1697]](https://github.com/fatih/vim-go/pull/1697)
+* Cache import path lookups to improve responsiveness.
+  [[GH-1713]](https://github.com/fatih/vim-go/pull/1713)
 
 BUG FIXES:
 
@@ -67,7 +71,13 @@ BUG FIXES:
   [[GH-1698]](https://github.com/fatih/vim-go/pull/1698)
 * Keep alternate filename when loading an autocreate template.
   [[GH-1675]](https://github.com/fatih/vim-go/pull/1675)
-
+* Parse the column number in errors correctly in vim8 and neovim.
+  [[GH-1716]](https://github.com/fatih/vim-go/pull/1716)
+* Fix race conditions in the terminal handling for neovim.
+  [[GH-1721]](https://github.com/fatih/vim-go/pull/1721)
+* Put the user back in the original window regardless of the value of
+  `splitright` after starting a neovim terminal window.
+  [[GH-1725]](https://github.com/fatih/vim-go/pull/1725)
 
 BACKWARDS INCOMPATIBILITIES:
 
@@ -87,6 +97,9 @@ BACKWARDS INCOMPATIBILITIES:
   [[GH-1557]](https://github.com/fatih/vim-go/pull/1557)
 * Rename g`g:go_metalinter_excludes` to `g:go_metalinter_disabled`.
   [[GH-1648]](https://github.com/fatih/vim-go/pull/1648)
+* `:GoBuild` doesn't append the `-i` flag anymore due the recent Go 1.10
+  changes that introduced a build cache.
+  [[GH-1701]](https://github.com/fatih/vim-go/pull/1701)
 
 ## 1.16 - (December 29, 2017)
 
