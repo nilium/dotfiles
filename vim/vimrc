@@ -231,6 +231,4 @@ set history=1000
 set viminfo=!,\"1000,'100,/1000,@1000,:1000,<1000,h,n~/.viminfo
 set sessionoptions=sesdir,buffers,folds,help,slash,unix,winsize
 
-nnoremap <Space>d :NERDTreeToggle<CR>
-
 " vim: set ft=vim ts=8 sw=8 tw=79 sts=8 fo=n1jcroql noet sta :
