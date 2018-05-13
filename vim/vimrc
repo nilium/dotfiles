@@ -126,8 +126,6 @@ if has('gui_running')
 	set guioptions=egmrt
 	set gfn=PragmataPro:h13
 	set macligatures
-elseif has('termguicolors')
-	set termguicolors
 endif
 
 " Tab line and status line
