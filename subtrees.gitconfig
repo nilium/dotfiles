@@ -216,3 +216,8 @@
 	subtree = vim/bundle/vimproc.vim
 	fetch = +refs/heads/*:refs/remotes/shougo@vimproc.vim/*
 	ref = 2300224d
+[remote "lfe-support@vim-lfe"]
+	url = https://github.com/lfe-support/vim-lfe.git
+	subtree = vim/bundle/vim-lfe
+	fetch = +refs/heads/*:refs/remotes/lfe-support@vim-lfe/*
+	ref = 290e7085
