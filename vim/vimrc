@@ -118,7 +118,6 @@ set wildmenu
 set showcmd
 set showmode
 " set t_Co=256
-colorscheme triplejelly
 
 " Set GUI font
 if has('gui_running')
@@ -129,6 +128,8 @@ if has('gui_running')
 elseif has('termguicolors')
 	set termguicolors
 endif
+set background=dark
+colorscheme triplejelly
 
 " Tab line and status line
 set showtabline=1
