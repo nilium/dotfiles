@@ -38,8 +38,8 @@ hi StatusLineNC guifg=#000000  guibg=#808080  ctermfg=black      ctermbg=gray   
 hi VertSplit    guifg=#000000  guibg=#808080  ctermfg=black      ctermbg=gray       gui=none  term=none  cterm=none
 
 " Popup menu
-hi Pmenu        guifg=#000000  guibg=#c0c0c0  ctermfg=black      ctermbg=lightgrey
-hi PmenuSel     guifg=#ffffff  guibg=#606060  ctermfg=white      ctermbg=darkgrey
+hi Pmenu        guifg=#ffffff  guibg=#131313  ctermfg=white      ctermbg=darkgrey
+hi PmenuSel     guifg=#ffff00  guibg=#2050d0  ctermfg=white      ctermbg=darkblue
 hi PmenuSbar    guifg=#000000  guibg=#808080  ctermfg=black      ctermbg=grey
 hi PmenuThumb   guifg=#d0d0d0  guibg=#d0d0d0  ctermfg=lightgray  ctermbg=lightgray
 
@@ -60,7 +60,9 @@ hi Cursor       guifg=#000000  guibg=#00ff00  ctermfg=black      ctermbg=lightgr
 hi lCursor      guifg=#ffffff  guibg=#000000  ctermfg=white      ctermbg=black
 
 " Tab colors
-hi TabLineFill  guifg=#000000  guibg=#000000  ctermfg=black      ctermbg=black
+hi TabLineFill  guifg=#131313  guibg=#131313  ctermfg=darkgrey   ctermbg=darkgrey
+hi TabLineSel   guifg=#ffff00  guibg=#2050d0  ctermfg=yellow     ctermbg=darkblue
+hi TabLine      guifg=#ffffff  guibg=#131313  ctermfg=white      ctermbg=darkgrey
 
 " Code colors
 hi Comment      guifg=#c0c0c0                 ctermfg=grey       ctermbg=bg
@@ -68,7 +70,8 @@ hi Constant     guifg=#00ffff                 ctermfg=lightcyan
 hi Special      guifg=#ffffff                 ctermfg=white
 hi Identifier   guifg=#ffff00                 ctermfg=yellow
 hi Statement    guifg=#ffffff                 ctermfg=white                         gui=none
-hi PreProc      guifg=#ffffff                 ctermfg=white
+hi Keyword      guifg=#ffff00                 ctermfg=yellow                        gui=none
+hi PreProc      guifg=#33ff33                 ctermfg=green
 hi Type         guifg=#ffffff                 ctermfg=white                         gui=none
 hi Underlined                                                                       gui=underline  cterm=underline  term=underline
 hi Ignore       guifg=bg                      ctermfg=bg
@@ -84,7 +87,6 @@ hi link Conditional     Statement
 hi link Repeat          Statement
 hi link Label           Statement
 hi link Operator        Statement
-hi link Keyword         Statement
 hi link Exception       Statement
 hi link Include         PreProc
 hi link Define          PreProc
@@ -98,3 +100,6 @@ hi link Delimiter       Special
 hi link SpecialComment  Special
 hi link Debug           Special
 
+" Go
+hi link goPackage       Keyword
+hi link goImport        Keyword
