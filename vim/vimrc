@@ -219,6 +219,8 @@ let g:ctrlp_custom_ignore = {
 
 let g:fzf_command_prefix = 'Fzf'
 
+let g:rainbow_active = 0
+
 " Load man
 runtime ftplugin/man.vim
 
