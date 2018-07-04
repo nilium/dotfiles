@@ -221,3 +221,8 @@
 	subtree = vim/bundle/vim-lfe
 	fetch = +refs/heads/*:refs/remotes/lfe-support@vim-lfe/*
 	ref = 290e7085
+[remote "luochen1990@rainbow"]
+	url = https://github.com/luochen1990/rainbow.git
+	subtree = vim/bundle/rainbow
+	fetch = +refs/heads/*:refs/remotes/luochen1990@rainbow/*
+	ref = 549724c2
