@@ -1,6 +1,8 @@
 " Vim color file
 " Maintainer:  Camilla Löwy <dreda@dreda.org>
 " Last Change: 2016 Jan 24
+"
+" NOTE: Modified by Noel Cower to add tablines.
 
 set bg=dark
 
@@ -56,6 +58,9 @@ hi DiffText                    guibg=#303010                     ctermbg=darkblu
 " Cursor colors
 hi Cursor       guifg=#000000  guibg=#00ff00  ctermfg=black      ctermbg=lightgreen
 hi lCursor      guifg=#ffffff  guibg=#000000  ctermfg=white      ctermbg=black
+
+" Tab colors
+hi TabLineFill  guifg=#000000  guibg=#000000  ctermfg=black      ctermbg=black
 
 " Code colors
 hi Comment      guifg=#c0c0c0                 ctermfg=grey       ctermbg=bg
