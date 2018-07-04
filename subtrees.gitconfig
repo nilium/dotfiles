@@ -9,210 +9,210 @@
 [remote "glench@vim-jinja2-syntax"]
 	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
 	subtree = vim/bundle/Vim-Jinja2-Syntax
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/glench@vim-jinja2-syntax/*
 	ref = f21d99ee
 [remote "junegunn@fzf.vim"]
 	url = https://github.com/junegunn/fzf.vim.git
 	subtree = vim/bundle/fzf.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/junegunn@fzf.vim/*
 	ref = a362bc58
 [remote "junegunn@fzf"]
 	url = https://github.com/junegunn/fzf.git
 	subtree = vim/bundle/fzf
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/junegunn@fzf/*
 	ref = 21b94d2d
 [remote "martinda@jenkinsfile-vim-syntax"]
 	url = https://github.com/martinda/Jenkinsfile-vim-syntax.git
 	subtree = vim/bundle/jenkinsfile
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/martinda@jenkinsfile-vim-syntax/*
 	ref = 6d895742
 [remote "vito-c@jq.vim"]
 	url = https://github.com/vito-c/jq.vim.git
 	subtree = vim/bundle/jq.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vito-c@jq.vim/*
 	ref = 99d55a30
 [remote "kopischke@vim-fetch"]
 	url = https://github.com/kopischke/vim-fetch.git
 	subtree = vim/bundle/vim-fetch
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/kopischke@vim-fetch/*
 	ref = 83fe373b
 [remote "jparise@vim-graphql"]
 	url = https://github.com/jparise/vim-graphql.git
 	subtree = vim/bundle/vim-graphql
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/jparise@vim-graphql/*
 	ref = d8022326
 [remote "hashivim@vim-hashicorp-tools"]
 	url = https://github.com/hashivim/vim-hashicorp-tools.git
 	subtree = vim/bundle/vim-hashicorp-tools
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/hashivim@vim-hashicorp-tools/*
 	ref = fb8dec16
 [remote "b4b4r07@vim-hcl"]
 	url = https://github.com/b4b4r07/vim-hcl.git
 	subtree = vim/bundle/vim-hcl
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/b4b4r07@vim-hcl/*
 	ref = 155a2661
 [remote "fatih@vim-hclfmt"]
 	url = https://github.com/fatih/vim-hclfmt.git
 	subtree = vim/bundle/vim-hclfmt
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/fatih@vim-hclfmt/*
 	ref = 155a2661
 [remote "gkz@vim-ls"]
 	url = https://github.com/gkz/vim-ls.git
 	subtree = vim/bundle/vim-ls
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/gkz@vim-ls/*
 	ref = 79556833
 [remote "herringtondarkholme@yats.vim"]
 	url = https://github.com/HerringtonDarkholme/yats.vim.git
 	subtree = vim/bundle/yats.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/herringtondarkholme@yats.vim/*
 	ref = 7298b270
 [remote "nilium@smart-tabs"]
 	url = https://github.com/nilium/Smart-Tabs.git
 	subtree = vim/bundle/Smart-Tabs
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/nilium@smart-tabs/*
 	ref = 9e997561
 [remote "vim-scripts@yankring.vim"]
 	url = https://github.com/vim-scripts/YankRing.vim
 	subtree = vim/bundle/YankRing.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-scripts@yankring.vim/*
 	ref = 28854abe
 [remote "mileszs@ack.vim"]
 	url = https://github.com/mileszs/ack.vim.git
 	subtree = vim/bundle/ack.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/mileszs@ack.vim/*
 	ref = 36e40f9e
 [remote "dagwieers@asciidoc-vim"]
 	url = https://github.com/dagwieers/asciidoc-vim
 	subtree = vim/bundle/asciidoc-vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/dagwieers@asciidoc-vim/*
 	ref = f8f206b1
 [remote "raimondi@delimitmate"]
 	url = https://github.com/Raimondi/delimitMate.git
 	subtree = vim/bundle/delimitMate
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/raimondi@delimitmate/*
 	ref = 728b57a6
 [remote "vim-erlang@erlang-motions.vim"]
 	url = https://github.com/vim-erlang/erlang-motions.vim
 	subtree = vim/bundle/erlang-motions.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@erlang-motions.vim/*
 	ref = 2df14aed
 [remote "sjl@gundo.vim"]
 	url = https://github.com/sjl/gundo.vim
 	subtree = vim/bundle/gundo.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/sjl@gundo.vim/*
 	ref = 46c443ee
 [remote "itchyny@lightline.vim"]
 	url = https://github.com/itchyny/lightline.vim.git
 	subtree = vim/bundle/lightline.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/itchyny@lightline.vim/*
 	ref = 78c43c14
 [remote "godlygeek@tabular"]
 	url = https://github.com/godlygeek/tabular
 	subtree = vim/bundle/tabular
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/godlygeek@tabular/*
 	ref = 00e1e7fc
 [remote "majutsushi@tagbar"]
 	url = https://github.com/majutsushi/tagbar
 	subtree = vim/bundle/tagbar
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/majutsushi@tagbar/*
 	ref = 387bbadd
 [remote "sirver@ultisnips"]
 	url = https://github.com/SirVer/ultisnips.git
 	subtree = vim/bundle/ultisnips
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/sirver@ultisnips/*
 	ref = 423f264e
 [remote "moll@vim-bbye"]
 	url = https://github.com/moll/vim-bbye.git
 	subtree = vim/bundle/vim-bbye
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/moll@vim-bbye/*
 	ref = 25ef93ac
 [remote "ap@vim-buftabline"]
 	url = https://github.com/ap/vim-buftabline.git
 	subtree = vim/bundle/vim-buftabline
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/ap@vim-buftabline/*
 	ref = 14d208b1
 [remote "tpope@vim-commentary"]
 	url = https://github.com/tpope/vim-commentary.git
 	subtree = vim/bundle/vim-commentary
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/tpope@vim-commentary/*
 	ref = 89f43af1
 [remote "vim-erlang@vim-compot"]
 	url = https://github.com/vim-erlang/vim-compot
 	subtree = vim/bundle/vim-compot
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-compot/*
 	ref = 02b3baf5
 [remote "vim-erlang@vim-dialyzer"]
 	url = https://github.com/vim-erlang/vim-dialyzer
 	subtree = vim/bundle/vim-dialyzer
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-dialyzer/*
 	ref = b0ec26ee
 [remote "elixir-editors@vim-elixir"]
 	url = https://github.com/elixir-editors/vim-elixir.git
 	subtree = vim/bundle/vim-elixir
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/elixir-editors@vim-elixir/*
 	ref = bd75abb9
 [remote "vim-erlang@vim-erlang-compiler"]
 	url = https://github.com/vim-erlang/vim-erlang-compiler
 	subtree = vim/bundle/vim-erlang-compiler
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-erlang-compiler/*
 	ref = e64a19a7
 [remote "vim-erlang@vim-erlang-omnicomplete"]
 	url = https://github.com/vim-erlang/vim-erlang-omnicomplete
 	subtree = vim/bundle/vim-erlang-omnicomplete
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-erlang-omnicomplete/*
 	ref = 6e0c913e
 [remote "vim-erlang@vim-erlang-runtime"]
 	url = https://github.com/vim-erlang/vim-erlang-runtime
 	subtree = vim/bundle/vim-erlang-runtime
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-erlang-runtime/*
 	ref = d5782e77
 [remote "vim-erlang@vim-erlang-tags"]
 	url = https://github.com/vim-erlang/vim-erlang-tags
 	subtree = vim/bundle/vim-erlang-tags
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-erlang-tags/*
 	ref = 17bd1c0f
 [remote "tpope@vim-fugitive"]
 	url = https://github.com/tpope/vim-fugitive.git
 	subtree = vim/bundle/vim-fugitive
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/tpope@vim-fugitive/*
 	ref = 3e0bd86b
 [remote "fatih@vim-go"]
 	url = https://github.com/fatih/vim-go.git
 	subtree = vim/bundle/vim-go
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/fatih@vim-go/*
 	ref = 75210b2ba
 [remote "junegunn@vim-peekaboo"]
 	url = https://github.com/junegunn/vim-peekaboo.git
 	subtree = vim/bundle/vim-peekaboo
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/junegunn@vim-peekaboo/*
 	ref = a7c940b1
 [remote "vim-erlang@vim-rebar"]
 	url = https://github.com/vim-erlang/vim-rebar
 	subtree = vim/bundle/vim-rebar
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/vim-erlang@vim-rebar/*
 	ref = fbec9674
 [remote "tpope@vim-sleuth"]
 	url = https://github.com/tpope/vim-sleuth.git
 	subtree = vim/bundle/vim-sleuth
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/tpope@vim-sleuth/*
 	ref = b4bd45bf
 [remote "tpope@vim-surround"]
 	url = https://github.com/tpope/vim-surround
 	subtree = vim/bundle/vim-surround
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/tpope@vim-surround/*
 	ref = e49d6c24
 [remote "tpope@vim-unimpaired"]
 	url = https://github.com/tpope/vim-unimpaired
 	subtree = vim/bundle/vim-unimpaired
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/tpope@vim-unimpaired/*
 	ref = c77939c4
 [remote "stephpy@vim-yaml"]
 	url = https://github.com/stephpy/vim-yaml.git
 	subtree = vim/bundle/vim-yaml
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/stephpy@vim-yaml/*
 	ref = 05e225d5
 [remote "shougo@vimproc.vim"]
 	url = https://github.com/Shougo/vimproc.vim.git
 	subtree = vim/bundle/vimproc.vim
-	fetch = +refs/heads/*:refs/remotes/name@foo/*
+	fetch = +refs/heads/*:refs/remotes/shougo@vimproc.vim/*
 	ref = 2300224d
