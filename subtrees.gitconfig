@@ -226,3 +226,8 @@
 	subtree = vim/bundle/rainbow
 	fetch = +refs/heads/*:refs/remotes/luochen1990@rainbow/*
 	ref = 549724c2
+[remote "jakwings@vim-pony"]
+	url = https://github.com/jakwings/vim-pony.git
+	subtree = vim/bundle/vim-pony
+	fetch = +refs/heads/*:refs/remotes/jakwings@vim-pony/*
+	ref = b26f01a8
