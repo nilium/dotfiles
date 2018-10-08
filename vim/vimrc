@@ -124,7 +124,7 @@ if has('gui_running')
 	" GUI (e.g., mvim) options
 	set guioptions=egmrt
 	set gfn=PragmataPro:h13
-	set macligatures
+	set nomacligatures
 elseif has('termguicolors')
 	set termguicolors
 endif
