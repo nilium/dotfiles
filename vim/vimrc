@@ -233,6 +233,7 @@ let mapleader = ' '
 " Load pathogen
 let g:pathogen_disabled = []
 " call add(g:pathogen_disabled, 'BUNDLE')
+call add(g:pathogen_disabled, 'asciidoc-vim')
 execute pathogen#infect()
 
 " viminfo / preservatives
