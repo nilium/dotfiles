@@ -156,6 +156,9 @@ let g:go_highlight_types = 1
 let g:go_jump_to_error = 0
 let g:go_info_mode = 'guru'
 
+" erlang
+let g:erlang_completion_preview_help = 0
+
 " Use goimports
 " NOTE: Semi-broken lately, unsure why.
 let g:go_fmt_command = "goimports"
