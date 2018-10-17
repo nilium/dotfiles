@@ -50,7 +50,7 @@
 	url = https://github.com/b4b4r07/vim-hcl.git
 	subtree = vim/bundle/vim-hcl
 	fetch = +refs/heads/*:refs/remotes/b4b4r07@vim-hcl/*
-	ref = 155a2661
+	ref = 05bffef8
 [remote "fatih@vim-hclfmt"]
 	url = https://github.com/fatih/vim-hclfmt.git
 	subtree = vim/bundle/vim-hclfmt
