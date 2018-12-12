@@ -8,12 +8,6 @@ HERE := ${.PARSEDIR}
 PLATFORM != uname -s | tr A-Z a-z
 .endif
 
-.ifndef GMAKE
-GMAKE != ((hash gmake && which gmake) || (hash make && which make)) 2>/dev/null
-.if empty(GMAKE)
-.error GNU make not found -- required for install-vim
-.endif
-.endif
 SYMLINK := ln -sf
 
 TARGETS := \
@@ -30,7 +24,6 @@ install-vim: ${VIM_DIR}
 install-git: ${GIT_CONF}
 
 ${VIM_DIR}:  vim
-	cd vim/bundle/vimproc.vim && "${GMAKE}"
 	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
 
 ${TMUX_CONF}: tmux/${PLATFORM}.conf
