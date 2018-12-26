@@ -50,7 +50,7 @@ set synmaxcol=400
 filetype plugin indent on
 
 " Death to the audio bell
-set visualbell
+set visualbell t_vb=
 
 " Split to the right and down
 set splitright splitbelow
@@ -112,12 +112,11 @@ if has('cryptv') && v:progname != 'nvim'
 endif
 
 " Colors / UI-specific things
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 set lazyredraw
 set wildmenu
 set showcmd
 set showmode
-" set t_Co=256
 
 " Set GUI font
 if has('gui_running')
@@ -126,6 +125,12 @@ if has('gui_running')
 	set gfn=PragmataPro:h13
 	set nomacligatures
 elseif has('termguicolors')
+	if &term =~ "-256color"
+		set t_ut=
+		set t_8f=[38;2;%lu;%lu;%lum
+		set t_8b=[48;2;%lu;%lu;%lum
+	endif
+	set t_Co=256
 	set termguicolors
 endif
 set background=dark
@@ -143,6 +148,8 @@ if has('patch-7.3.541')
 endif
 
 " go (and vim-go)
+let g:go_highlight_function_calls = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_chan_whitespace_error = 1
 let g:go_highlight_extra_types = 1
