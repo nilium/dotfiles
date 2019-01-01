@@ -231,3 +231,8 @@
 	subtree = vim/bundle/vim-pony
 	fetch = +refs/heads/*:refs/remotes/jakwings@vim-pony/*
 	ref = b26f01a8
+[remote "ElmCast@elm-vim"]
+	url = https://github.com/ElmCast/elm-vim.git
+	subtree = vim/bundle/elm-vim
+	fetch = +refs/heads/*:refs/remotes/ElmCast@elm-vim/*
+	ref = d22c0ba1
