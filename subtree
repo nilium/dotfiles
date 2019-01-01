@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -e
+gitroot="$(git rev-parse --show-toplevel)"
+cd "$gitroot"
+
+if ! command -v fex >/dev/null; then
+  cat 1>&2 <<EOF
+fex is not installed -- please install fex:
+  Linux: # xbps-install fex
+  macOS: $ brew install fex
+EOF
+  exit 1
+fi
+
+prog="$gitroot/subtree"
+
+sattr() {
+  git config -f "$gitroot/subtrees.gitconfig" --get remote."$1"."$2"
+}
+
+update() {
+  local cmd="$1"
+  local repo="$2"
+  local prefix="$(sattr "$repo" subtree)"
+  local ref="$(sattr "$repo" "${cmd}Ref")"
+  if [ -z "$prefix" ]; then
+    echo "No subtree configured for repo $repo" 1>&2
+    exit 1
+  fi
+  git subtree "$cmd" --squash --prefix="$prefix" "$repo" "${ref:-master}"
+}
+
+if [ $# -eq 0 ]; then
+  echo -n 'Pull all subtrees? [Y/n]: '
+  read confirm
+  if [ "$confirm" != Y ]; then
+    echo 'Aborting...'
+    exit 0
+  fi
+  git config -f subtrees.gitconfig -l |
+    fex '=1.{2:-2}' |
+    sort | uniq |
+    xargs -L1 "$prog" pull
+  exit $?
+fi
+
+cmd=pull
+for arg; do
+  case "$arg" in
+  add|pull) cmd="$arg";;
+  *) update "$cmd" "$arg";;
+  esac
+done
