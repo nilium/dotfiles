@@ -5,14 +5,18 @@ To install these using the Makefile, use bmake.
 
 The following targets are available:
 
+help::
+    Print targets that can be installed (default).
+all::
+    Install all targets for the running platform.
 install-vim::
-    Vim config files
+    Vim config files.
 install-tmux::
-    Tmux config files (Darwin/Linux)
+    Tmux config files (Darwin/Linux).
 install-git::
-    Git config (really, really specific to me)
-
-By default, all three are installed.
+    Git config (really, really specific to me).
+install-i3::
+    i3 configuration and scripts.
 
 
 Subtrees
