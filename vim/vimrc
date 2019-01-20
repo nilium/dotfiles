@@ -84,7 +84,7 @@ let &listchars='tab:│·,trail:·,extends:→,precedes:←,nbsp:·'
 set nolist
 
 " Show line numbers
-set number
+set number relativenumber
 set ruler
 
 " Search-related
@@ -146,6 +146,9 @@ set formatoptions=crqn1
 if has('patch-7.3.541')
 	set formatoptions+=j
 endif
+
+" Omnicompletion
+set completeopt-=preview
 
 " go (and vim-go)
 let g:go_highlight_function_calls = 1
