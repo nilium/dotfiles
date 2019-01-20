@@ -1,0 +1,162 @@
+set $TERMINAL st
+set $mod Mod4
+
+exec_always --no-startup-id xsetroot -solid '#181014'
+exec_always --no-startup-id xmodmap ~/.Xmodmap
+exec_always --no-startup-id xset r rate 200 30
+
+focus_follows_mouse no
+
+font pango:PragmataPro 11
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Start terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# Kill focused window
+bindsym $mod+Shift+w kill
+
+# Start rofi
+bindsym $mod+r exec rofi -show run
+bindsym $mod+t exec rofi -show window
+
+# Lock screen
+bindsym $mod+control+l exec xautolock -locknow
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Tab focus right
+bindsym $mod+Shift+Tab focus left
+bindsym Mod1+Tab focus down
+bindsym Mod1+Shift+Tab focus up
+bindsym $mod+y layout toggle split
+
+# And cursor keys -- this is easier on the laptop keyboard
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Again, cursor keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Layouts
+# Split horizontal / vertical
+bindsym $mod+backslash split h
+bindsym $mod+apostrophe split v
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+# Stacked, tabbed, or split (normal)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+# Toggle floating
+bindsym $mod+Shift+space floating toggle
+# Move floating/tiled focus
+bindsym $mod+space focus mode_toggle
+# Focus parent / child (trees / leaves)
+bindsym $mod+comma focus parent
+bindsym $mod+period focus child
+
+# Audio keys
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+# Media keys
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioStop exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+
+# Switch to prefix workspace
+bindsym $mod+1 exec "i3-select-ws 1"
+bindsym $mod+2 exec "i3-select-ws 2"
+bindsym $mod+3 exec "i3-select-ws 3"
+bindsym $mod+4 exec "i3-select-ws 4"
+bindsym $mod+5 exec "i3-select-ws 5"
+bindsym $mod+6 exec "i3-select-ws 6"
+bindsym $mod+7 exec "i3-select-ws 7"
+bindsym $mod+8 exec "i3-select-ws 8"
+bindsym $mod+9 exec "i3-select-ws 9"
+bindsym $mod+0 exec "i3-select-ws 10"
+
+# Move container to prefix workspace
+bindsym $mod+Shift+1 exec "i3-move-to-ws 1"
+bindsym $mod+Shift+2 exec "i3-move-to-ws 2"
+bindsym $mod+Shift+3 exec "i3-move-to-ws 3"
+bindsym $mod+Shift+4 exec "i3-move-to-ws 4"
+bindsym $mod+Shift+5 exec "i3-move-to-ws 5"
+bindsym $mod+Shift+6 exec "i3-move-to-ws 6"
+bindsym $mod+Shift+7 exec "i3-move-to-ws 7"
+bindsym $mod+Shift+8 exec "i3-move-to-ws 8"
+bindsym $mod+Shift+9 exec "i3-move-to-ws 9"
+bindsym $mod+Shift+0 exec "i3-move-to-ws 10"
+
+# Move whole workspace
+bindsym $mod+control+shift+h move workspace to output left
+bindsym $mod+control+shift+l move workspace to output right
+bindsym $mod+control+shift+j move workspace to output down
+bindsym $mod+control+shift+k move workspace to output up
+
+# Reload config
+bindsym $mod+Shift+c reload
+# Restart i3
+bindsym $mod+Shift+Home restart
+# Exit
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Floating windows
+# Example: (don't actually do this with zeal)
+# for_window [class="Zeal"] floating enable
+
+# Disable title bars (only relevant in gaps things -- seems like a bad idea)
+# for_window [class="^.*"] border pixel 0
+
+# Default resize mode:
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        # bindsym $mod+r mode "default"
+}
+
+# Enter resize mode
+bindsym $mod+shift+r mode "resize"
+
+# i3bar
+bar {
+        position bottom
+        status_command i3status
+}

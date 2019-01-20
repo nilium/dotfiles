@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+ws="$1"
+if [ -z "$ws" ]; then
+  exit 1
+fi
+name="$(i3-msg -t get_workspaces | jq --argjson num "$ws" '(map(select(.num == $num).name) | first // $num) | tostring')"
+if [ -z "$name" ]; then
+  exit 1
+fi
+exec i3-msg "move container to workspace $name"

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+quote() {
+  jq -n --arg text "$*" '$text'
+}
+ws="$(i3-msg -t get_workspaces | jq '.[]|select(.focused).num')"
+oldname="$(i3-msg -t get_workspaces | jq --argjson num "$ws" '.[]|select(.focused).name')"
+name="$(dmenu -p "Name: " <<<'')"
+if [ -n "$name" ] && printf '%d' "$name" >/dev/null 2>/dev/null; then
+        ws="$name"
+        name=
+fi
+i3-msg "rename workspace ${oldname} to $(quote "${ws}${name:+: }${name}")"
