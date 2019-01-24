@@ -78,34 +78,32 @@
 	cmd = vimdiff
 
 [alias]
-        dc = diff --cached
-        pff = pull --ff-only
-        s = show
+	alog = log --all --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
+	fup = push --force-with-lease
+	slog = log --format=oneline
+        # Borrowed/modified from user "Slipp D. Thompson"'s answer at http://stackoverflow.com/a/9074343/457812
+        ;; Less general-purpose aliases
         ap = add --patch
-        cv = commit --verbose --untracked-files=no
+        br = branch
         ci = commit
         co = checkout
-        br = branch
-        st = status
-        sm = submodule
-	puff = push --force-with-lease
-	puf = push --force-with-lease
-        ;; Less general-purpose aliases
-        ; st = !git status -- $* && git lol --max-count=6 -- $* 2>/dev/null
-        who = shortlog -s --
+        cv = commit --verbose --untracked-files=no
+        dc = diff --cached
         df = difftool
-        ri = rebase --interactive
-        rh = reset HEAD
-        logwhen = log --pretty='%h: %an (%aD)'
-        lp = log --pretty=short --name-status
-        lps = log --pretty=medium --name-status
-        # Borrowed/modified from user "Slipp D. Thompson"'s answer at http://stackoverflow.com/a/9074343/457812
-        lsd = stash list --name-status --abbrev-commit --decorate --format=format:'%C(bold yellow)%<|(11)%gd %C(bold blue)%h%C(reset)  %C(bold green)%>(16)%ar ⇒ %C(reset) %s%C(reset)'
-        lol = log --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
-	slog = log --format=oneline
-	alog = log --all --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
         glog = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
         glogd = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %s%C(reset) - %an%C(reset)'
+        logwhen = log --pretty='%h: %an (%aD)'
+        lol = log --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
+        lp = log --pretty=short --name-status
+        lps = log --pretty=medium --name-status
+        lsd = stash list --name-status --abbrev-commit --decorate --format=format:'%C(bold yellow)%<|(11)%gd %C(bold blue)%h%C(reset)  %C(bold green)%>(16)%ar ⇒ %C(reset) %s%C(reset)'
+        pff = pull --ff-only
+        rh = reset HEAD
+        ri = rebase --interactive
+        s = show
+        sm = submodule
+        st = status
+        who = shortlog -s --
 
 [url "git@github.com:"]
         pushInsteadOf=https://github.com/
