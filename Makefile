@@ -11,6 +11,7 @@ FACTS += PLATFORM PREFIX BIN_DIR
 SYMLINK := ln -sf
 
 # All convenience targets (sorted lexically)
+CONF_TARGETS += install-dunst
 CONF_TARGETS += install-git
 CONF_TARGETS += install-i3
 CONF_TARGETS += install-tmux
@@ -20,6 +21,20 @@ CONF_TARGETS += install-vim
 .PHONY: help all ${CONF_TARGETS}
 
 help:
+
+# dunst (notifications)
+HELP_install-dunst := Install dunst configuration
+.if ${PLATFORM} == linux
+TARGETS += install-dunst
+.endif
+
+DUNST_DIR ?= ${PREFIX}/.config/dunst
+FACTS += DUNST_DIR
+
+install-dunst: ${DUNST_DIR}
+${DUNST_DIR}: dunst
+	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
+
 
 # git
 TARGETS += install-git
