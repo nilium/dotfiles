@@ -21,30 +21,6 @@ CONF_TARGETS += install-vim
 
 help:
 
-# vim
-TARGETS += install-vim
-HELP_install-vim := Install vim configuration, including bundles
-
-VIM_DIR ?= ${PREFIX}/.vim
-FACTS += VIM_DIR
-
-install-vim: ${VIM_DIR}
-${VIM_DIR}:  vim
-	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
-
-
-# tmux
-TARGETS += install-tmux
-HELP_install-tmux := Install tmux configuration
-
-TMUX_CONF ?= ${PREFIX}/.tmux.conf
-FACTS += TMUX_CONF
-
-install-tmux: ${TMUX_CONF}
-${TMUX_CONF}: tmux/${PLATFORM}.conf
-	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
-
-
 # git
 TARGETS += install-git
 HELP_install-git := Install git configuration
@@ -80,6 +56,30 @@ install-i3: ${BIN_DIR}/${bin}
 ${BIN_DIR}/${bin}: i3/bin/${bin}
 	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
 .endfor
+
+
+# tmux
+TARGETS += install-tmux
+HELP_install-tmux := Install tmux configuration
+
+TMUX_CONF ?= ${PREFIX}/.tmux.conf
+FACTS += TMUX_CONF
+
+install-tmux: ${TMUX_CONF}
+${TMUX_CONF}: tmux/${PLATFORM}.conf
+	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
+
+
+# vim
+TARGETS += install-vim
+HELP_install-vim := Install vim configuration, including bundles
+
+VIM_DIR ?= ${PREFIX}/.vim
+FACTS += VIM_DIR
+
+install-vim: ${VIM_DIR}
+${VIM_DIR}:  vim
+	${SYMLINK} "${>:[1]:tA}" "${.TARGET}"
 
 
 # All platform targets
