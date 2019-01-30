@@ -70,7 +70,7 @@
 	url = https://github.com/nilium/Smart-Tabs.git
 	subtree = vim/bundle/Smart-Tabs
 	fetch = +refs/heads/*:refs/remotes/nilium/smart-tabs/*
-	ref = 9e997561
+	ref = 277decc2
 [remote "vim-scripts/yankring.vim"]
 	url = https://github.com/vim-scripts/YankRing.vim
 	subtree = vim/bundle/YankRing.vim
