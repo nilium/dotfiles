@@ -3,7 +3,7 @@
 " Version: 2.6
 " Last Modified: December 2010
 "
-" Histroy:
+" History:
 "   1.0: - Added RetabIndent command - similar to :retab, but doesn't cause
 "         internal tabs to be modified.
 "   1.1: - Added support for backspacing over spaced tabs 'smarttab' style
@@ -47,7 +47,7 @@
 "
 "  CTabAlignTo(n)
 "     'Tab' to the n'th column from the start of the indent.
-
+"
 " g:ctab_filetype_maps
 "   set this to true if script used as a filetype plugin
 " g:ctab_disable_checkalign
@@ -64,12 +64,12 @@ else
 endif
 
 if exists('g:ctab_enable_default_filetype_maps') && ctab_enable_default_filetype_maps
-  if s:buff_map != ''
-    if (&filetype =~ '^\(cpp\|idl\)$' )
+  if s:buff_map !=# ''
+    if (&filetype =~# '^\(cpp\|idl\)$' )
       imap <silent> <buffer> <expr> <m-;> CTabAlignTo(20).'//'
       imap <silent> <buffer> <expr> <m-s-;> CTabAlignTo(30).'//'
       imap <silent> <buffer> º <m-s-;>
-    elseif &filetype == 'c'
+    elseif &filetype ==# 'c'
       imap <expr> <silent> <buffer> <m-;> CTabAlignTo(10).'/*  */<left><left><left>'
     endif
   else
@@ -84,22 +84,9 @@ if !exists('g:ctab_disable_tab_maps') || ! g:ctab_disable_tab_maps
   exe  'inoremap '.s:buff_map.'<silent> <expr> <BS> <SID>DoSmartDelete()."\<BS>"'
 endif
 
-"exe 'imap '.s:buff_map.'<silent> <expr> <BS> <SID>KeepDelLine()."\<BS>"
-
-" MRG: TODO
-"exe 'imap '.s:buff_map.'<silent> <expr> <c-d> :call <SID>SmartDeleteTab()<CR>'
-"exe 'imap '.s:buff_map.'<silent> <c-t> <SID>SmartInsertTab()'
-" fun! s:SmartDeleteTab()
-"   let curcol=col('.')-&sw
-"   let origtxt=getline('.')
-"   let repl=matchstr(origtxt,'^\s\{-}\%'.(&sw+2)."v')
-"   if repl == '' then
-"     return "\<c-o>".':s/	*\zs	/'.repeat(' ',(&ts-&sw)).'/'."\<CR>\<c-o>".curcol.'|'
-"   else
-"     return "\<c-o>".':s/^\s\{-}\%'.(&sw+1)."v//\<CR>\<c-o>".curcol."|"
-"   end
-"
-" endfun
+fun! s:ShiftWidth()
+  return exists('b:insidetabs')?(b:insidetabs):((&sts<=0)?((&sw==0)?&ts:&sw):&sts)
+endfun
 
 fun! s:ShiftWidth()
   return exists("b:insidetabs")?(b:insidetabs):((&sts==0)?((&sw==0)?&ts:&sw):&sts)
@@ -110,10 +97,10 @@ endfun
 fun! s:InsertSmartTab()
   " Clear the status
   echo ''
-  if strpart(getline('.'),0,col('.')-1) =~'^\s*$'
-    if exists('b:ctab_hook') && b:ctab_hook != ''
+  if strpart(getline('.'),0,col('.')-1) =~# '^\s*$'
+    if exists('b:ctab_hook') && b:ctab_hook !=# ''
       exe 'return '.b:ctab_hook
-    elseif exists('g:ctab_hook') && g:ctab_hook != ''
+    elseif exists('g:ctab_hook') && g:ctab_hook !=# ''
       exe 'return '.g:ctab_hook
     endif
     return "\<Tab>"
@@ -122,11 +109,11 @@ fun! s:InsertSmartTab()
   let sts=s:ShiftWidth()
   let sp=(virtcol('.') % sts)
   if sp==0 | let sp=sts | endif
-  return strpart("                  ",0,1+sts-sp)
+  return repeat(' ', 1+sts-sp)
 endfun
 
 fun! s:CheckLeaveLine(line)
-  if ('cpo' !~ 'I') && exists('b:ctab_lastalign') && (a:line == b:ctab_lastalign)
+  if (&cpo !~# 'I') && exists('b:ctab_lastalign') && (a:line == b:ctab_lastalign)
     s/^\s*$//e
   endif
 endfun
@@ -141,41 +128,28 @@ aug END
 " The <BS> is included at the end so that deleting back over line ends
 " works as expected.
 fun! s:DoSmartDelete()
-  " Clear the status
-  "echo ''
   let uptohere=strpart(getline('.'),0,col('.')-1)
   " If at the first part of the line, fall back on defaults... or if the
   " preceding character is a <TAB>, then similarly fall back on defaults.
   "
   let lastchar=matchstr(uptohere,'.$')
-  if lastchar == "\<tab>" || uptohere =~ '^\s*$' | return '' | endif        " Simple cases
-  if lastchar != ' ' | return ((&digraph)?("\<BS>".lastchar): '')  | endif  " Delete non space at end / Maintain digraphs
+  if lastchar ==# "\<tab>" || uptohere =~# '^\s*$' | return '' | endif        " Simple cases
+  if lastchar !=# ' ' | return ((&digraph)?("\<BS>".lastchar): '')  | endif  " Delete non space at end / Maintain digraphs
 
   " Work out how many tabs to use
   let sts=s:ShiftWidth()
 
   let ovc=virtcol('.')              " Find where we are
-  let sp=(ovc % sts)                " How many virtual characters to delete
+  let sp=((ovc-1) % sts)            " How many virtual characters to delete
   if sp==0 | let sp=sts | endif     " At least delete a whole tabstop
-  let vc=ovc-sp                     " Work out the new virtual column
-  " Find how many characters we need to delete (using \%v to do virtual column
-  " matching, and making sure we don't pass an invalid value to vc)
-  let uthlen=strlen(uptohere)
-  let bs= uthlen-((vc<1)?0:(  match(uptohere,'\%'.(vc-1).'v')))
-  let uthlen=uthlen-bs
-  " echo 'ovc = '.ovc.' sp = '.sp.' vc = '.vc.' bs = '.bs.' uthlen='.uthlen
-  if bs <= 0 | return  '' | endif
 
-  " Delete the specifed number of whitespace characters up to the first non-whitespace
-  let ret=''
-  let bs=bs-1
-  if uptohere[uthlen+bs] !~ '\s'| return '' | endif
-  while bs>=-1
-    let bs=bs-1
-    if uptohere[uthlen+bs] !~ '\s' | break | endif
-    let ret=ret."\<BS>"
+  let pos = strlen(uptohere) - sp
+  let bs = " \<BS>"                 " Disable deleting move than one space by first <BS> in some cases (not sure why it happens)
+  while uptohere[pos+sp-2] ==# ' ' && sp > 1 && pos+sp > 1
+    let bs=bs . "\<BS>"
+    let sp=sp - 1
   endwhile
-  return ret
+  return bs
 endfun
 
 fun! s:Column(line)
@@ -183,7 +157,7 @@ fun! s:Column(line)
   let i=0
   let len=strlen(a:line)
   while i< len
-    if a:line[i]=="\<tab>"
+    if a:line[i] ==# "\<tab>"
       let c=(c+&tabstop)
       let c=c-(c%&tabstop)
     else
@@ -193,6 +167,7 @@ fun! s:Column(line)
   endwhile
   return c
 endfun
+
 fun! s:StartColumn(lineNo)
   return s:Column(matchstr(getline(a:lineNo),'^\s*'))
 endfun
@@ -206,7 +181,7 @@ fun! CTabAlignTo(n)
   let spaces=ico-co
   let spc=''
   while spaces > 0
-    let spc=spc." "
+    let spc=spc.' '
     let spaces=spaces-1
   endwhile
   return spc
@@ -226,11 +201,13 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
       if a:line == line('.')
         let b:ctab_lastalign=a:line
       else
-        unlet b:ctab_lastalign
+        if exists('b:ctab_lastalign')
+          unlet b:ctab_lastalign
+        endif
       endif
-      set ts=50
-      set sw=50
-      if &indentexpr != ''
+      set ts=256
+      set sw=256
+      if &indentexpr !=# ''
         let v:lnum=a:line
         sandbox exe 'let inda='.&indentexpr
         if inda == -1
@@ -251,8 +228,8 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
       let &ts=tskeep
       let &sw=swkeep
     endtry
-    let indatabs=inda / 50
-    let indaspace=inda % 50
+    let indatabs=inda / 256
+    let indaspace=inda % 256
     let indb=indent(a:line)
     if indatabs*&tabstop + indaspace == indb
       let txtindent=repeat("\<Tab>",indatabs).repeat(' ',indaspace)
@@ -263,21 +240,29 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
   fun! s:SID()
     return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
   endfun
+
   " Get the spaces at the end of the  indent correct.
   " This is trickier than it should be, but this seems to work.
   fun! s:CheckCR()
-    " echo 'SID:'.s:SID()
-    if getline('.') =~ '^\s*$'
-      if ('cpo' !~ 'I') && exists('b:ctab_lastalign') && (line('.') == b:ctab_lastalign)
+    if getline('.') =~# '^\s*$'
+      if (&cpo !~# 'I') && exists('b:ctab_lastalign') && (line('.') == b:ctab_lastalign)
         return "^\<c-d>\<CR>"
       endif
       return "\<CR>"
     else
-      return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<END>"
+      let b:linelength = strlen(getline('.'))
+      let b:curcol = col('.')
+      let b:moveback = b:linelength - b:curcol
+      if b:moveback > 0
+        return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<END>\<ESC>" . b:moveback . "\<left>i"
+      elseif b:moveback == 0
+        return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<END>\<left>"
+      else
+        return "\<CR>\<c-r>=<SNR>".s:SID().'_CheckAlign(line(''.''))'."\<CR>\<END>"
+      endif
     endif
   endfun
 
-  "exe 'inoremap '.s:buff_map.'<silent> <CR> <CR><c-r>=<SID>CheckAlign(line(''.''))."\<lt>END>"<CR>'
   exe 'inoremap '.s:buff_map.'<silent> <expr> <CR> <SID>CheckCR()'
   exe 'nnoremap '.s:buff_map.'<silent> o o<c-r>=<SID>CheckAlign(line(''.''))."\<lt>END>"<CR>'
   exe 'nnoremap '.s:buff_map.'<silent> O O<c-r>=<SID>CheckAlign(line(''.''))."\<lt>END>"<CR>'
@@ -287,6 +272,7 @@ if ! exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0
   " The only way I can think to do this is to remap the =
   " so that it calls the original, then checks all the indents.
   exe 'map '.s:buff_map.'<silent> <expr> = <SID>SetupEqual()'
+
   fun! s:SetupEqual()
     set operatorfunc=CtabRedoIndent
     " Call the operator func so we get the range
@@ -314,13 +300,13 @@ endif
 fun! s:RetabIndent( bang, firstl, lastl, tab )
   let checkspace=((!&expandtab)? "^\<tab>* ": "^ *\<tab>")
   let l = a:firstl
-  let force= a:tab != '' && a:tab != 0 && (a:tab != &tabstop)
+  let force= a:tab !=# '' && a:tab != 0 && (a:tab != &tabstop)
   let checkalign = ( &expandtab || !(&autoindent || &indentexpr || &cindent)) && (!exists('g:ctab_disable_checkalign') || g:ctab_disable_checkalign==0)
   let newtabstop = (force?(a:tab):(&tabstop))
   while l <= a:lastl
     let txt=getline(l)
     let store=0
-    if a:bang == '!' && txt =~ '\s\+$'
+    if a:bang ==# '!' && txt =~# '\s\+$'
       let txt=substitute(txt,'\s\+$','','')
       let store=1
     endif
@@ -349,6 +335,5 @@ endfun
 "   Optional argument specified the value of the new tabstops
 "   Bang (!) causes trailing whitespace to be gobbled.
 com! -nargs=? -range=% -bang -bar RetabIndent call <SID>RetabIndent(<q-bang>,<line1>, <line2>, <q-args> )
-
 
 " vim: sts=2 sw=2 et
