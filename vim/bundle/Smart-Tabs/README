@@ -1,3 +1,20 @@
+This is a FORK of https://github.com/vim-scripts/Smart-Tabs
+
+Changes:
+
+- Merge b:ctab_lastalign fix from @skroll
+- Merge increase supported line size from @skroll
+- Merge fix for ts==0 from @nilium
+- Handle sts==-1 by using sw instead (per vim behavior)
+- Merge two fixes for breaking lines from @mdlerch
+- Merge fix for <BS> deleting incorrect number of spaces from @mmedved
+
+Changes are licensed under the same terms as the original
+
+===============
+Original README
+===============
+
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=231
 
 There are many different arguments about tabs and stuff.  My current personal preference is a choice of tabbing that is independent of anybody&#039s viewing settings.  
