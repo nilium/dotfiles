@@ -134,6 +134,7 @@ elseif has('termguicolors')
 	set termguicolors
 endif
 set background=dark
+let g:triplejelly_background_color = "000000"
 colorscheme triplejelly
 
 " Tab line and status line
