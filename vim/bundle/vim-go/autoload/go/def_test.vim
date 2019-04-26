@@ -1,3 +1,7 @@
+" don't spam the user when Vim is started in Vi compatibility mode
+let s:cpo_save = &cpo
+set cpo&vim
+
 func! Test_jump_to_declaration_guru() abort
   try
     let l:filename = 'def/jump.go'
@@ -46,7 +50,7 @@ func! Test_Jump_leaves_lists() abort
 
     let l:bufnr = bufnr('%')
     call cursor(6, 7)
-    call go#def#Jump('')
+    call go#def#Jump('', 0)
 
     let start = reltime()
     while bufnr('%') == l:bufnr && reltimefloat(reltime(start)) < 10
@@ -62,5 +66,9 @@ func! Test_Jump_leaves_lists() abort
     call delete(l:tmp, 'rf')
   endtry
 endfunc
+
+" restore Vi compatibility settings
+let &cpo = s:cpo_save
+unlet s:cpo_save
 
 " vim: sw=2 ts=2 et
