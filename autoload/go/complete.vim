@@ -1,16 +1,11 @@
+" don't spam the user when Vim is started in Vi compatibility mode
+let s:cpo_save = &cpo
+set cpo&vim
+
 function! s:gocodeCommand(cmd, args) abort
   let l:gocode_bin = "gocode"
   let l:gomod = go#util#gomod()
   if filereadable(l:gomod)
-    " Save the file when in module mode so that go list can read the
-    " imports. If the user doesn't have autowrite or autorwriteall enabled,
-    " they'll need to write the file manually to get reliable results.
-    " See https://github.com/fatih/vim-go/pull/1988#issuecomment-428576989.
-    "
-    " TODO(bc): don't save the file when in module mode once
-    " golang.org/x/tools/go/packages has support for an overlay and it's used
-    " by gocode.
-    call go#cmd#autowrite()
     let l:gocode_bin = "gocode-gomod"
   endif
 
@@ -32,7 +27,7 @@ function! s:gocodeCommand(cmd, args) abort
   if go#config#GocodeProposeSource()
     let cmd = extend(cmd, ['-source'])
   else
-    let cmd = extend(cmd, ['-fallback-to-source'])
+    let cmd = extend(cmd, ['-fallback-to-source', '-cache'])
   endif
 
   if go#config#GocodeUnimportedPackages()
@@ -98,22 +93,6 @@ endfunction
 function! s:async_info(echo, showstatus)
   let state = {'echo': a:echo}
 
-  function! s:complete(job, exit_status, messages) abort dict
-    if a:exit_status != 0
-      return
-    endif
-
-    if &encoding != 'utf-8'
-      let i = 0
-      while i < len(a:messages)
-        let a:messages[i] = iconv(a:messages[i], 'utf-8', &encoding)
-        let i += 1
-      endwhile
-    endif
-
-    let result = s:info_filter(self.echo, join(a:messages, "\n"))
-    call s:info_complete(self.echo, result)
-  endfunction
   " explicitly bind complete to state so that within it, self will
   " always refer to state. See :help Partial for more information.
   let state.complete = function('s:complete', [], state)
@@ -154,6 +133,23 @@ function! s:async_info(echo, showstatus)
         \ })
 
   call go#job#Start(cmd, opts)
+endfunction
+
+function! s:complete(job, exit_status, messages) abort dict
+  if a:exit_status != 0
+    return
+  endif
+
+  if &encoding != 'utf-8'
+    let i = 0
+    while i < len(a:messages)
+      let a:messages[i] = iconv(a:messages[i], 'utf-8', &encoding)
+      let i += 1
+    endwhile
+  endif
+
+  let result = s:info_filter(self.echo, join(a:messages, "\n"))
+  call s:info_complete(self.echo, result)
 endfunction
 
 function! s:gocodeFile()
@@ -202,16 +198,18 @@ function! s:info_filter(echo, result) abort
   let wordMatch = substitute(wordMatch, "'", "''", "g")
   let filtered = filter(l:candidates, "v:val.info =~ '".wordMatch."'")
 
-  if len(l:filtered) != 1
-    return ""
+  if len(l:filtered) == 0
+    return "no matches"
+  elseif len(l:filtered) > 1
+    return "ambiguous match"
   endif
 
   return l:filtered[0].info
 endfunction
 
 function! s:info_complete(echo, result) abort
-  if a:echo && !empty(a:result)
-    echo "vim-go: " | echohl Function | echon a:result | echohl None
+  if a:echo
+    call go#util#ShowInfo(a:result)
   endif
 
   return a:result
@@ -222,12 +220,22 @@ function! s:trim_bracket(val) abort
   return a:val
 endfunction
 
-let s:completions = ""
-function! go#complete#Complete(findstart, base) abort
+let s:completions = []
+
+function! go#complete#GocodeComplete(findstart, base) abort
   "findstart = 1 when we need to get the text length
   if a:findstart == 1
-    execute "silent let s:completions = " . s:gocodeAutocomplete()
-    return col('.') - s:completions[0] - 1
+    let l:completions = []
+    execute "silent let l:completions = " . s:gocodeAutocomplete()
+
+    if len(l:completions) == 0 || len(l:completions) >= 2 && len(l:completions[1]) == 0
+      " no matches. cancel and leave completion mode.
+      call go#util#EchoInfo("no matches")
+      return -3
+    endif
+
+    let s:completions = l:completions[1]
+    return col('.') - l:completions[0] - 1
     "findstart = 0 when we need to return the list of completions
   else
     let s = getline(".")[col('.') - 1]
@@ -236,6 +244,36 @@ function! go#complete#Complete(findstart, base) abort
     endif
 
     return s:completions[1]
+  endif
+endfunction
+
+function! go#complete#Complete(findstart, base) abort
+  let l:state = {'done': 0, 'matches': []}
+
+  function! s:handler(state, matches) abort dict
+    let a:state.matches = a:matches
+    let a:state.done = 1
+  endfunction
+
+  "findstart = 1 when we need to get the start of the match
+  if a:findstart == 1
+    call go#lsp#Completion(expand('%:p'), line('.'), col('.'), funcref('s:handler', [l:state]))
+
+    while !l:state.done
+      sleep 10m
+    endwhile
+
+    let s:completions = l:state.matches
+
+    if len(l:state.matches) == 0
+      " no matches. cancel and leave completion mode.
+      call go#util#EchoInfo("no matches")
+      return -3
+    endif
+
+    return col('.')
+  else "findstart = 0 when we need to return the list of completions
+    return s:completions
   endif
 endfunction
 
@@ -249,5 +287,9 @@ function! go#complete#ToggleAutoTypeInfo() abort
   call go#config#SetAutoTypeInfo(1)
   call go#util#EchoProgress("auto type info enabled")
 endfunction
+
+" restore Vi compatibility settings
+let &cpo = s:cpo_save
+unlet s:cpo_save
 
 " vim: sw=2 ts=2 et
