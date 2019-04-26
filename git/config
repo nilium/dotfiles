@@ -78,6 +78,8 @@
 	cmd = vimdiff
 
 [alias]
+	todo = !git grep -F -e \"TODO($(git config --global user.email | fex @1)):\" -e \"TODO:\"
+	fixme = !git grep -F -e \"FIXME($(git config --global user.email | fex @1)):\" -e \"FIXME:\"
 	alog = log --all --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %s - %an%C(reset)%C(bold yellow)%d%C(reset)'
 	fup = push --force-with-lease
 	slog = log --format=oneline
