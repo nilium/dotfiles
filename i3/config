@@ -7,7 +7,7 @@ exec_always --no-startup-id xset r rate 200 30
 
 focus_follows_mouse no
 
-font pango:PragmataPro 11
+font pango:RobotoCondensed 14
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
