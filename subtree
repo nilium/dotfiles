@@ -31,6 +31,25 @@ update() {
   git subtree "$cmd" --squash --prefix="$prefix" "$repo" "${ref:-master}"
 }
 
+if [ "$1" = -h ] || [ "$1" = -help ] || [ "$1" = --help ]; then
+  echo >&2 'USAGE: subtree [CMD [repository...]]
+
+CMD is either 'pull' or 'add'. If it is neither, it is assumed to be
+a repository.
+
+For example, to update an existing subtree:
+
+  $ ./subtree pull junegunn/fzf
+
+Or to add a newly-configured subtree:
+
+  $ ./subtree add tpope/vim-sleuth
+
+Most subtree are for Vim plugins, but this applies to any subtree
+configured in subtrees.gitconfig.'
+  exit 2
+fi
+
 if [ $# -eq 0 ]; then
   echo -n 'Pull all subtrees? [Y/n]: '
   read confirm
