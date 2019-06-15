@@ -105,7 +105,7 @@ endfunction
 " the location list
 function! go#lint#Golint(bang, ...) abort
   if a:0 == 0
-    let [l:out, l:err] = go#util#Exec([go#config#GolintBin(), go#package#ImportPath()])
+    let [l:out, l:err] = go#util#Exec([go#config#GolintBin(), expand('%:p:h')])
   else
     let [l:out, l:err] = go#util#Exec([go#config#GolintBin()] + a:000)
   endif
@@ -141,7 +141,7 @@ function! go#lint#Vet(bang, ...) abort
   if a:0 == 0
     let [l:out, l:err] = go#util#Exec(['go', 'vet', go#package#ImportPath()])
   else
-    let [l:out, l:err] = go#util#Exec(['go', 'tool', 'vet'] + a:000)
+    let [l:out, l:err] = go#util#ExecInDir(['go', 'tool', 'vet'] + a:000)
   endif
 
   let l:listtype = go#list#Type("GoVet")
@@ -269,11 +269,13 @@ function! s:golangcilintcmd(bin_path)
   let cmd = [a:bin_path]
   let cmd += ["run"]
   let cmd += ["--print-issued-lines=false"]
+  let cmd += ['--build-tags', go#config#BuildTags()]
   let cmd += ["--disable-all"]
   " do not use the default exclude patterns, because doing so causes golint
   " problems about missing doc strings to be ignored and other things that
   " golint identifies.
   let cmd += ["--exclude-use-default=false"]
+
   return cmd
 endfunction
 
