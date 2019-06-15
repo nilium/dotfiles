@@ -14,6 +14,10 @@ function! go#config#VersionWarning() abort
   return get(g:, 'go_version_warning', 1)
 endfunction
 
+function! go#config#NullModuleWarning() abort
+  return get(g:, 'go_null_module_warning', 1)
+endfunction
+
 function! go#config#BuildTags() abort
   return get(g:, 'go_build_tags', '')
 endfunction
@@ -114,7 +118,7 @@ function! go#config#ListAutoclose() abort
 endfunction
 
 function! go#config#InfoMode() abort
-  return get(g:, 'go_info_mode', 'gocode')
+  return get(g:, 'go_info_mode', 'gopls')
 endfunction
 
 function! go#config#GuruScope() abort
@@ -174,12 +178,15 @@ function! go#config#DocUrl() abort
   return godoc_url
 endfunction
 
+function! go#config#DocPopupWindow() abort
+  return get(g:, 'go_doc_popup_window', 0)
+endfunction
 function! go#config#DefReuseBuffer() abort
   return get(g:, 'go_def_reuse_buffer', 0)
 endfunction
 
 function! go#config#DefMode() abort
-  return get(g:, 'go_def_mode', 'guru')
+  return get(g:, 'go_def_mode', 'gopls')
 endfunction
 
 function! go#config#DeclsIncludes() abort
@@ -464,6 +471,10 @@ endfunction
 
 function! go#config#EchoGoInfo() abort
   return get(g:, "go_echo_go_info", 1)
+endfunction
+
+function! go#config#CodeCompletionEnabled() abort
+  return get(g:, "go_code_completion_enabled", 1)
 endfunction
 
 " Set the default value. A value of "1" is a shortcut for this, for

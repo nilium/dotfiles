@@ -1,5 +1,75 @@
 ## unplanned
 
+IMPROVEMENTS:
+* Add a new option, `g:go_code_completion_enabled`, to control whether omnifunc
+  is set.
+  [[GH-2229]](https://github.com/fatih/vim-go/pull/2229)
+* Use build tags with golangci-lint.
+  [[GH-2261]](https://github.com/fatih/vim-go/pull/2261)
+* Allow debugging of packages outside of GOPATH without a go.mod file.
+  [[GH-2269]](https://github.com/fatih/vim-go/pull/2269)
+* Show which example failed when Example tests fail
+  [[GH-2277]](https://github.com/fatih/vim-go/pull/2277)
+* Show function signature and return types in preview window when autocompleting functions and methods.
+  [[GH-2289]](https://github.com/fatih/vim-go/pull/2289)
+* Improve the user experience when using null modules.
+  [[GH-2300]](https://github.com/fatih/vim-go/pull/2300)
+* Add a new option, `g:go_null_module_warning` to silence the warning when
+  trying to use gopls with a null module.
+  [[GH-2309]](https://github.com/fatih/vim-go/pull/2309)
+* Modify `:GoReportGitHubIssue` to include vim-go configuration values
+  [[GH-2323]](https://github.com/fatih/vim-go/pull/2323)
+* Respect `g:go_info_mode='gopls'` in go#complete#GetInfo.
+  [[GH-2313]](https://github.com/fatih/vim-go/pull/2313)
+* Allow `:GoLint`, `:GoErrCheck`, and `:GoDebug` to work in null modules.
+  [[GH-2335]](https://github.com/fatih/vim-go/pull/2335)
+* Change default value for `g:go_info_mode` and `g:go_def_mode` to `'gopls'`.
+  [[GH-2329]](https://github.com/fatih/vim-go/pull/2329)
+* Add a new option, `g:go_doc_popup_window` to optionally use a popup window
+  for godoc in Vim 8.1.1513 and later.
+  [[GH-2347]](https://github.com/fatih/vim-go/pull/2347)
+* Check for null modules in the background when initializing gopls.
+  [[GH-2351]](https://github.com/fatih/vim-go/pull/2351)
+
+BUG FIXES:
+* display info about function and function types whose parameters are
+  `interface{}` without truncating the function signature.
+  [[GH-2244]](https://github.com/fatih/vim-go/pull/2244)
+* install tools that require GOPATH mode when in module mode.
+  [[GH-2253]](https://github.com/fatih/vim-go/pull/2253)
+* Detect GOPATH when starting `gopls`
+  [[GH-2255]](https://github.com/fatih/vim-go/pull/2255)
+* Handle `gopls` responses in the same window from which the respective request
+  originated.
+  [[GH-2266]](https://github.com/fatih/vim-go/pull/2266)
+* Show completion matches from gocode.
+  [[GH-2267]](https://github.com/fatih/vim-go/pull/2267)
+* Show the completion preview window.
+  [[GH-2268]](https://github.com/fatih/vim-go/pull/2268)
+* Set the anchor for method documentation correctly.
+  [[GH-2276]](https://github.com/fatih/vim-go/pull/2276)
+* Respect the LSP information for determining where candidate matches start.
+  [[GH-2291]](https://github.com/fatih/vim-go/pull/2291)
+* Restore environment variables with backslashes correctly.
+  [[GH-2292]](https://github.com/fatih/vim-go/pull/2292)
+* Modify handling of gopls output for `:GoInfo` to ensure the value will be
+  displayed.
+  [[GH-2311]](https://github.com/fatih/vim-go/pull/2311)
+* Run `:GoLint` successfully in null modules.
+  [[GH-2318]](https://github.com/fatih/vim-go/pull/2318)
+* Ensure actions on save work in new buffers that have not yet been persisted to disk.
+  [[GH-2319]](https://github.com/fatih/vim-go/pull/2319)
+* Restore population of information in `:GoReportGitHubIssue`.
+  [[GH-2312]](https://github.com/fatih/vim-go/pull/2312)
+* Do not jump back to the originating window when jumping to definitions with
+  `g:go_def_mode='gopls'`.
+  [[GH-2327]](https://github.com/fatih/vim-go/pull/2327)
+* Fix getting information about a valid identifier for which gopls returns no
+  information (e.g. calling `:GoInfo` on a package identifier).
+  [[GH-2339]](https://github.com/fatih/vim-go/pull/2339)
+* Fix tab completion of package names on the cmdline in null modules.
+  [[GH-2342]](https://github.com/fatih/vim-go/pull/2342)
+
 ## 1.20 - (April 22, 2019)
 
 FEATURES:
