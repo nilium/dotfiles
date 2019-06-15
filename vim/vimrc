@@ -254,6 +254,11 @@ let mapleader = ' '
 let g:pathogen_disabled = []
 " call add(g:pathogen_disabled, 'BUNDLE')
 call add(g:pathogen_disabled, 'asciidoc-vim')
+call add(g:pathogen_disabled, 'ack.vim')
+call add(g:pathogen_disabled, 'rainbow')
+call add(g:pathogen_disabled, 'vim-dialyzer')
+call add(g:pathogen_disabled, 'vim-elixir')
+call add(g:pathogen_disabled, 'vim-graphql')
 execute pathogen#infect()
 
 " viminfo / preservatives
