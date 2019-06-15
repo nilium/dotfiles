@@ -170,7 +170,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
 let g:go_jump_to_error = 0
-let g:go_info_mode = 'guru'
+let g:go_info_mode = 'gopls'
+let g:go_def_mode = 'gopls'
 
 " erlang
 let g:erlang_completion_preview_help = 0
