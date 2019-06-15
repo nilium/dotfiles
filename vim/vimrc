@@ -142,6 +142,7 @@ set showtabline=1
 set laststatus=2
 
 " Default formatoptions
+set nojoinspaces
 set textwidth=120
 set formatoptions=crqn1
 if has('patch-7.3.541')
