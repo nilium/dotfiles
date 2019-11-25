@@ -241,3 +241,8 @@
 	subtree = vim/bundle/vim-terraform-completion
 	fetch = +refs/heads/*:refs/remotes/juliosueiras/vim-terraform-completion/*
 	ref = 2a6f3f726b7a56e74f1826b9e4310a42ad8429d3
+[remote "vimwiki/vimwiki"]
+	url = https://github.com/vimwiki/vimwiki
+	subtree = vim/bundle/vimwiki
+	fetch = +refs/heads/*:refs/remotes/vimwiki/vimwiki/*
+	ref = 57d23fa763b498561aca7eb4efb05b52efd120c9
