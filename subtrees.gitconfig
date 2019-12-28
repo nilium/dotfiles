@@ -180,7 +180,7 @@
 	url = https://github.com/fatih/vim-go.git
 	subtree = vim/bundle/vim-go
 	fetch = +refs/heads/*:refs/remotes/fatih/vim-go/*
-	ref = b6a0bde7d4c64a063ea1b6365e3dd24e2d4f4df1
+	ref = 8baba3705429c3ab899258c46658b437a90867cd
 [remote "junegunn/vim-peekaboo"]
 	url = https://github.com/junegunn/vim-peekaboo.git
 	subtree = vim/bundle/vim-peekaboo
