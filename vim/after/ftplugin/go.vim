@@ -1,5 +1,5 @@
 " Hard tabs, width 8, wrap comments at 100 columns
-set noexpandtab ts=8 sw=8 sts=8 tw=100
+set noexpandtab ts=8 sw=8 sts=8 tw=80
 
 let s:templeader = mapleader
 let mapleader = ' '
