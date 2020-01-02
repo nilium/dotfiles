@@ -16,6 +16,9 @@
         excludesfile = ~/.gitignore_global
         pager = less -F -X
 
+[diff]
+        algorithm = histogram
+
 ;; Include merge summary in merge commit messages.
 [merge]
         summary = true
