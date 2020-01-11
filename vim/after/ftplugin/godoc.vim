@@ -1,2 +1,7 @@
+let s:templeader = mapleader
+let mapleader = ' '
+
 " Close GoDoc window when done
-nnoremap <buffer> q :q<Cr>
+nnoremap <buffer> <Leader><Leader> :q<Cr>
+
+let mapleader = s:templeader

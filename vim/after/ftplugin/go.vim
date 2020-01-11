@@ -4,14 +4,12 @@ set noexpandtab ts=8 sw=8 sts=8 tw=80
 let s:templeader = mapleader
 let mapleader = ' '
 
-nnoremap <buffer> <Leader>gf :GoFmt<CR>
-nnoremap <buffer> <Leader>gi :GoImports<CR>
-nnoremap <buffer> <Leader>gI :GoInstall<CR>
-nnoremap <buffer> <Leader>gb :GoBuild<CR>
-nnoremap <buffer> <Leader>gt :GoTest<CR>
-nnoremap <buffer> <Leader>gv :GoVet<CR>
-nnoremap <buffer> <Leader>gl :GoLint<CR>
-nnoremap <buffer> <Leader>gd :GoDoc<CR>
+nnoremap <buffer> <Leader>f :GoImports<CR>
+nnoremap <buffer> <Leader>b :GoBuild<CR>
+nnoremap <buffer> <Leader>t :GoTest<CR>
+nnoremap <buffer> <Leader>v :GoVet<CR>
+nnoremap <buffer> <Leader>l :GoLint<CR>
+nnoremap <buffer> <Leader><Leader> :GoDoc<CR>
 
 let b:syntastic_mode = 'passive'
 let b:sleuth_automatic = 0
