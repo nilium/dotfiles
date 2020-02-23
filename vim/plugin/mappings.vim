@@ -2,6 +2,11 @@
 " Mappings
 "
 
+nnoremap <silent> <PageUp> <C-b>
+nnoremap <silent> <PageDown> <C-f>
+nnoremap <silent> <S-PageUp> 10gk
+nnoremap <silent> <S-PageDown> 10gj
+
 " Middle mouse
 " I.. don't think I've used this in ages? I don't even have a middle mouse
 " button right now. Actually confusing to me.

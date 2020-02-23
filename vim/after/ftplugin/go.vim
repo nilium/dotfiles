@@ -11,6 +11,7 @@ nnoremap <buffer> <Leader>v :GoVet<CR>
 nnoremap <buffer> <Leader>l :GoLint<CR>
 nnoremap <buffer> <Leader><Leader> :GoDoc<CR>
 
+
 let b:syntastic_mode = 'passive'
 let b:sleuth_automatic = 0
 
