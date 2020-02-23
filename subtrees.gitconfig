@@ -36,11 +36,6 @@
 	subtree = vim/pack/plugins/start/vim-fetch
 	fetch = +refs/heads/*:refs/remotes/kopischke/vim-fetch/*
 	ref = 83fe373b
-[remote "jparise/vim-graphql"]
-	url = https://github.com/jparise/vim-graphql.git
-	subtree = vim/pack/plugins/start/vim-graphql
-	fetch = +refs/heads/*:refs/remotes/jparise/vim-graphql/*
-	ref = d8022326
 [remote "hashivim/vim-hashicorp-tools"]
 	url = https://github.com/hashivim/vim-hashicorp-tools.git
 	subtree = vim/pack/plugins/start/vim-hashicorp-tools
@@ -76,11 +71,6 @@
 	subtree = vim/pack/plugins/start/YankRing.vim
 	fetch = +refs/heads/*:refs/remotes/vim-scripts/yankring.vim/*
 	ref = 28854abe
-[remote "mileszs/ack.vim"]
-	url = https://github.com/mileszs/ack.vim.git
-	subtree = vim/pack/plugins/start/ack.vim
-	fetch = +refs/heads/*:refs/remotes/mileszs/ack.vim/*
-	ref = 36e40f9e
 [remote "dagwieers/asciidoc-vim"]
 	url = https://github.com/dagwieers/asciidoc-vim
 	subtree = vim/pack/plugins/start/asciidoc-vim
